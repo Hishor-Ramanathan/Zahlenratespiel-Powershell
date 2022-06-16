@@ -1,0 +1,29 @@
+$zufallszahl = Get-Random -Minimum 1 -Maximum (100)
+$versuche = 0
+$raten = $true
+$eingabeInt = 0
+
+while($raten)
+    {
+    $eingabeString = read-host "Bitte geben Sie eine Zahl zwischen 1 und 100 ein"
+    $versuche++
+        if([int32]::TryParse($eingabeString, [ref] $eingabeInt)) {
+           
+            if($eingabeInt -gt $zufallszahl) {
+               write-host  "Ihre Zahl ist grösser."
+          
+            } elseif($eingabeInt -lt $zufallszahl) {
+               write-host  "Ihre Zahl ist kleiner."
+           
+            } else {
+                $raten = $false
+            }
+        } else {
+          
+          write-host  "Bitte geben Sie eine Zahl zwischen 1 und 100 ein"
+        }
+    }
+
+    "Sie haben die Richte Zahl erraten in $versuche Versuchen!"
+
+ 
