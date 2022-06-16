@@ -1,11 +1,14 @@
+$spiel = $true
+while($spiel)
+{
 $zufallszahl = Get-Random -Minimum 1 -Maximum (100)
 $versuche = 0
 $raten = $true
 $eingabeInt = 0
-
+write-host "Bitte geben Sie eine Zahl zwischen 1 und 100 ein"
 while($raten)
-    {
-    $eingabeString = read-host "Bitte geben Sie eine Zahl zwischen 1 und 100 ein"
+    {  
+    $eingabeString = read-host
     $versuche++
         if([int32]::TryParse($eingabeString, [ref] $eingabeInt)) {
            
@@ -24,6 +27,16 @@ while($raten)
         }
     }
 
-    "Sie haben die Richte Zahl erraten in $versuche Versuchen!"
-
  
+write-host "Sie haben die Richte Zahl erraten in $versuche Versuchen!"
+write-host ""
+write-host "Wollen Sie weiter spielen? [y][n]"
+$eingabeString = read-host 
+  switch($eingabeString)
+    {
+        "y" {}
+        "n" { $spiel = $false}
+        default { write-host "Wollen Sie weiter spielen? [y][n]" }
+    }
+
+} 
